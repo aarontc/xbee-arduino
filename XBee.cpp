@@ -781,7 +781,7 @@ void XBee::resetResponse() {
 	_response.reset();
 }
 
-XBee::XBee(Stream &serial): _response(XBeeResponse()), _serial(serial) {
+XBee::XBee(Stream &serial): _response(XBeeResponse()), _serial(&serial) {
         _pos = 0;
         _escape = false;
         _checksumTotal = 0;
