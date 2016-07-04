@@ -31,13 +31,10 @@ Doxygen API documentation is available in the downloads. Unfortunately it is not
 I have created several sketches of sending/receiving packets with Series 1 and 2 XBee radios. You can find these in the examples folder. Here's an example of sending a packet with a Series 2 radio:
 
 ```
-// Create an XBee object at the top of your sketch
-XBee xbee = XBee();
-
 // Start the serial port
 Serial.begin(9600);
-// Tell XBee to use Hardware Serial. It's also possible to use SoftwareSerial
-xbee.setSerial(Serial);
+// Create an XBee object at the top of your sketch. The constructor specifies which serial port is in use. It's also possible to use SoftwareSerial.
+XBee xbee = XBee(Serial);
 
 // Create an array for holding the data you want to send.
 uint8_t payload[] = { 'H', 'i' };

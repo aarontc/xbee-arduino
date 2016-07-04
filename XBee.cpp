@@ -25,8 +25,6 @@
 	#include "WProgram.h"
 #endif
 
-#include "HardwareSerial.h"
-
 XBeeResponse::XBeeResponse() {
 
 }
@@ -783,7 +781,7 @@ void XBee::resetResponse() {
 	_response.reset();
 }
 
-XBee::XBee(): _response(XBeeResponse()) {
+XBee::XBee(Stream &serial): _response(XBeeResponse()), _serial(serial) {
         _pos = 0;
         _escape = false;
         _checksumTotal = 0;
@@ -791,12 +789,6 @@ XBee::XBee(): _response(XBeeResponse()) {
 
         _response.init();
         _response.setFrameData(_responseFrameData);
-		// Contributed by Paul Stoffregen for Teensy support
-#if defined(__AVR_ATmega32U4__) || defined(__MK20DX128__)
-        _serial = &Serial1;
-#else
-        _serial = &Serial;
-#endif
 }
 
 uint8_t XBee::getNextFrameId() {

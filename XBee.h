@@ -761,7 +761,7 @@ private:
  */
 class XBee {
 public:
-	XBee();
+	XBee(Stream &serial);
 	/**
 	 * Reads all available serial bytes until a packet is parsed, an error occurs, or the buffer is empty.
 	 * You may call <i>xbee</i>.getResponse().isAvailable() after calling this method to determine if
